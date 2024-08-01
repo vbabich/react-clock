@@ -13,9 +13,9 @@ const rotations = [0, 0, 0]; // [seconds, minutes, hours]
 export default function Clock(props: ClockProps = {}) {
   const { width = 140, height = 140, value, run = true, ...svgProps } = props;
   const interval = useRef<NodeJS.Timeout>();
-  const handHour = React.createRef<SVGLineElement>();
-  const handMinute = React.createRef<SVGLineElement>();
-  const handSecond = React.createRef<SVGGElement>();
+  const handHour = useRef<SVGLineElement | null>(null);
+  const handMinute = useRef<SVGLineElement | null>(null);
+  const handSecond = useRef<SVGGElement | null>(null);
   function handleTime() {
     const now = new Date(value || new Date());
     const seconds = now.getSeconds();
